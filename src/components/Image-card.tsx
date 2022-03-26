@@ -9,8 +9,9 @@ function ImageCard({...data}:Data[]) {
     console.log(imageArr[0]);
   return (
   <>
+  {/* //, search:`${i._id}` */}
         {imageArr.map((i, idx)=>
-        <Link to={{pathname:`/image/${idx}`, search:`${i._id}`}}>
+        <Link to={{pathname:`/image/${idx}`, search:`${idx}`}}>
             <li key={idx} className='card-item' >
                 <div className='card-pic' >
                     <img src={i._id}/>

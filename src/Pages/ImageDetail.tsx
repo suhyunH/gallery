@@ -1,15 +1,32 @@
-import React, { useContext } from 'react'
-import { useLocation, useParams} from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useLocation, useParams} from 'react-router-dom'
 import '../scss/imagedetail.scss'
 import {ImageContext} from "../misc/useContext"
+
+type Params={
+id?: string |undefined;
+}
 
 
 
 function ImageDetail() {
-  const location = useLocation();
-  const url = location.search.substring(1) as string;
-  console.log(url);
+   const location = useLocation();
+  const initialValue = location.search.substring(1) as string ;
+  const [clickedSlide, setClickedSlide] = useState<number>(parseInt(initialValue));
   const data = useContext(ImageContext).renderings;
+
+  const handleNext=()=>{
+      setClickedSlide(clickedSlide +1);
+    if(clickedSlide === data.length-1){
+      setClickedSlide(data.length-1);
+    }
+  }
+  const handlePrev=()=>{
+    setClickedSlide(clickedSlide -1);
+    if(clickedSlide <= 0){
+      setClickedSlide(0); 
+    }
+  }
 
   return (
     <div>
@@ -24,9 +41,17 @@ function ImageDetail() {
                 <button type='button'>삭제</button>
             </div>
         </div>
-
         <div>
-         <img src={url} alt="" />
+
+          <div>
+          <img src={data[clickedSlide]._id} alt="디테일 사진" />
+          </div>
+          <Link to={{pathname:`/image/${clickedSlide}`}}>
+          <button onClick={handlePrev}>prev</button>
+          </Link> 
+          <Link to={{pathname:`/image/${clickedSlide}`}}>
+          <button onClick={handleNext}>next</button>
+          </Link>
         </div>
     </div>
   )
