@@ -9,20 +9,21 @@ function ImageCard({...data}:Data[]) {
     console.log(imageArr[0]);
   return (
   <>
-  {/* //, search:`${i._id}` */}
         {imageArr.map((i, idx)=>
-        <Link to={{pathname:`/image/${idx}`, search:`${idx}`}}>
             <li key={idx} className='card-item' >
                 <div className='card-pic' >
                     <img src={i._id}/>
                 <span className='card-view'>일인칭 뷰어</span>
                 </div>
-                <div className="card-hover">
+                <div className='card-hover-container'>
                     <input id="select" type="checkbox"/>
-                    <button className='card-option' type='button'>...</button>
+                <Link to={{pathname:`/image/${idx}`, search:`${idx}`}}>
+                    <div className="card-hover">
+                        <button className='card-option' type='button'>...</button>
+                    </div>
+                </Link>
                 </div>
             </li>
-        </Link>
         )}
         </>
 

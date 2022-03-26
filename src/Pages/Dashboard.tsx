@@ -19,7 +19,7 @@ function Dashboard() {
         <div className='content-container'>
             <div className='gallary-header'>
                 <span className='image-total'>{data.length}개의 렌더샷</span>
-                <div>갤러리</div>
+                <h3>갤러리</h3>
             </div>
             <ul className='imagecard-container'>
               <ImageCard {...data}/>
