@@ -5,9 +5,10 @@ import { Data } from '../misc/model';
 interface CardProps{
     data: Data[],
     setClickedCard: (v: number[]) => void
+    clickedCard:number[]
 }
 
-function ImageCard({data, setClickedCard}:CardProps) {
+function ImageCard({data, setClickedCard, clickedCard }:CardProps) {
     const imageArr = Object.values(data);
     const [checked, setChecked] =useState<number[]>([])
     
@@ -36,7 +37,7 @@ function ImageCard({data, setClickedCard}:CardProps) {
                     <Link to={{pathname:`/image/${idx}`, search:`${idx}`}}>
                         <div className="card-hover"></div>
                     </Link>
-                    <input className='checkbox' type="checkbox" onChange={onChecked} id={`${idx}`}/>
+                    <input className='checkbox' type="checkbox" onChange={onChecked} id={`${idx}`} checked={clickedCard.includes(parseInt(`${idx}`))}/>
                     <button className='card-option' type='button'>...</button>
                 </div>
             </li>

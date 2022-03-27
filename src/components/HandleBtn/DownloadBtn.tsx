@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { ImageContext } from '../../misc/useContext';
-
+import "../../scss/handlebtn.scss"
 interface DownProps{
     chosenIdx : number[]
 }

@@ -36,8 +36,9 @@ function ImageDetail() {
                 </button>
             </div>
           </Link>
-          <HandleBtn  clickedSlide={clickedSlide}/>
-    
+          <div className='handlebtn-container'>
+            <HandleBtn  clickedSlide={clickedSlide}/>
+          </div>
         </div>
         <div className='image-detail-container'>
 

@@ -1,12 +1,17 @@
 import React from 'react'
 import DownloadBtn from './DownloadBtn';
+import "../../scss/handlebtn.scss"
+
 
 
 interface HandleProps {
     clickedSlide?: number,
     clickedCard?: number[]
+    isDashboard?:boolean
 }
-function HandleBtn({clickedSlide, clickedCard}:HandleProps) {
+
+function HandleBtn({clickedSlide, clickedCard, isDashboard}:HandleProps) {
+  
  let chosenIdx : number[] =[];
   if(clickedSlide){
     chosenIdx = [clickedSlide]
@@ -15,10 +20,12 @@ function HandleBtn({clickedSlide, clickedCard}:HandleProps) {
   }
 
   return (
-    <div>
+      <>
       <DownloadBtn chosenIdx={chosenIdx}/> 
-    <button type='button'>삭제</button>
-</div>
+      <button type='button'>삭제</button>
+      </>
+      
+
   )
 }
 
