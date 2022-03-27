@@ -27,6 +27,7 @@ function DownloadBtn({chosenIdx}:DownProps) {
             a.click();
             document.body.removeChild(a);
         })
+        console.log(chosenIdx);
         };
   return (
     <>

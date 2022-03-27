@@ -11,6 +11,7 @@ function ImageDetail() {
   const [clickedSlide, setClickedSlide] = useState<number>(parseInt(initialValue));
   const data = useContext(ImageContext).renderings;
 
+  console.log(clickedSlide);
   const handleNext=()=>{
       setClickedSlide(clickedSlide +1);
     if(clickedSlide === data.length-1){
@@ -35,7 +36,7 @@ function ImageDetail() {
                 </button>
             </div>
           </Link>
-          <HandleBtn clickedSlide={clickedSlide}/>
+          <HandleBtn  clickedSlide={clickedSlide}/>
     
         </div>
         <div className='image-detail-container'>

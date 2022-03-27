@@ -1,17 +1,22 @@
-import React, { useContext } from 'react'
-import {ImageContext} from "../../misc/useContext"
+import React from 'react'
 import DownloadBtn from './DownloadBtn';
 
 
 interface HandleProps {
-    clickedSlide: number
+    clickedSlide?: number,
+    clickedCard?: number[]
 }
-function HandleBtn({clickedSlide}:HandleProps) {
-   const chosenIdx:number[] = [clickedSlide]
+function HandleBtn({clickedSlide, clickedCard}:HandleProps) {
+ let chosenIdx : number[] =[];
+  if(clickedSlide){
+    chosenIdx = [clickedSlide]
+  }else if(clickedCard){
+    chosenIdx = [...clickedCard];
+  }
 
   return (
     <div>
-      <DownloadBtn chosenIdx={chosenIdx}/>
+      <DownloadBtn chosenIdx={chosenIdx}/> 
     <button type='button'>삭제</button>
 </div>
   )

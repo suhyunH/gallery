@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import "../scss/imagecard.scss";
 import { Link } from 'react-router-dom';
 import { Data } from '../misc/model';
-import { FunctionExpression } from 'typescript';
 interface CardProps{
     data: Data[],
     setClickedCard: (v: number[]) => void

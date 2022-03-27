@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import ImageCard from '../components/Image-card'
 import "../scss/dashboard.scss"
 import {ImageContext} from "../misc/useContext"
+import HandleBtn from '../components/HandleBtn';
 
 
 function Dashboard() {
@@ -20,8 +21,17 @@ function Dashboard() {
         
         <div className='content-container'>
             <div className='gallary-header'>
+              {clickedCard.length >0?
+                (
+                <HandleBtn clickedCard={clickedCard} />)
+                :
+                (
+                <>
                 <span className='image-total'>{data.length}개의 렌더샷</span>
                 <h3>갤러리</h3>
+                </>
+                )
+              }
             </div>
             <ul className='imagecard-container'>
               <ImageCard data={data} setClickedCard={(v: number[]) => { setClickedCard(v) }}/>
