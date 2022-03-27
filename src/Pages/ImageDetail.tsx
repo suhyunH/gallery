@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Link, useLocation} from 'react-router-dom'
 import '../scss/imagedetail.scss'
 import {ImageContext} from "../misc/useContext"
+import HandleBtn from '../components/HandleBtn';
 
 
 function ImageDetail() {
@@ -22,6 +23,7 @@ function ImageDetail() {
       setClickedSlide(0); 
     }
   }
+ 
 
   return (
     <div>
@@ -33,10 +35,8 @@ function ImageDetail() {
                 </button>
             </div>
           </Link>
-            <div>
-                <button className='down-btn' type='button'>다운로드</button>
-                <button type='button'>삭제</button>
-            </div>
+          <HandleBtn clickedSlide={clickedSlide}/>
+    
         </div>
         <div className='image-detail-container'>
 

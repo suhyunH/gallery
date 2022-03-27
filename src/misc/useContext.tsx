@@ -1,5 +1,4 @@
-import React, { createContext, useState } from 'react';
-import { Data } from './model';
+import React, { createContext } from 'react';
 import data from "../misc/mock-data.json"
 
 type ImageContextProviderProps={

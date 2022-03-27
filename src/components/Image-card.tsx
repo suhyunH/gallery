@@ -1,15 +1,29 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../scss/imagecard.scss";
 import { Link } from 'react-router-dom';
 import { Data } from '../misc/model';
+import { FunctionExpression } from 'typescript';
+interface CardProps{
+    data: Data[],
+    setClickedCard: (v: number[]) => void
+}
 
-function ImageCard({...data}:Data[]) {
+function ImageCard({data, setClickedCard}:CardProps) {
     const imageArr = Object.values(data);
     const [checked, setChecked] =useState<number[]>([])
-    const inputRef = useRef<HTMLInputElement>(null)
+    
     const onChecked = (e:React.ChangeEvent<HTMLInputElement>)=>{
-        setChecked(i=>[...i, parseInt(e.target.id)]);
+        let checkedNum= parseInt(e.target.id)
+        if(!checked.includes(checkedNum)){
+            setChecked(i=> [...i, checkedNum]);
+        }else if(checked.includes(checkedNum)){
+            setChecked(checked.filter((i)=>i!==checkedNum));
+        }
     }
+    useEffect(()=>{
+        setClickedCard([...checked]);
+    },[checked])
+
   
   return (
   <>

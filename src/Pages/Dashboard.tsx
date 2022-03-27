@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import ImageCard from '../components/Image-card'
 import "../scss/dashboard.scss"
 import {ImageContext} from "../misc/useContext"
@@ -6,6 +6,8 @@ import {ImageContext} from "../misc/useContext"
 
 function Dashboard() {
   const data = useContext(ImageContext).renderings;
+  const [clickedCard, setClickedCard] = useState<number[]>([])
+  console.log(clickedCard);
   return (
     <div>
         {/* nav */}
@@ -22,7 +24,7 @@ function Dashboard() {
                 <h3>갤러리</h3>
             </div>
             <ul className='imagecard-container'>
-              <ImageCard {...data}/>
+              <ImageCard data={data} setClickedCard={(v: number[]) => { setClickedCard(v) }}/>
             </ul>
 
         </div>
