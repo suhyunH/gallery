@@ -23,8 +23,13 @@ function ImageCard({data, setClickedCard, clickedCard }:CardProps) {
     useEffect(()=>{
         setClickedCard([...checked]);
     },[checked])
+    useEffect(()=>{
+        if(clickedCard.length ===0 && checked.length > 0){
+            setChecked([])
+        }
+    },[clickedCard])
 
-  
+  console.log(checked);
   return (
   <>
         {imageArr.map((i, idx)=>

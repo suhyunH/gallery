@@ -23,7 +23,6 @@ function Dashboard() {
     }
     setClickedCard([]);
   }
-  console.log(clickedCard);
 
 
  
