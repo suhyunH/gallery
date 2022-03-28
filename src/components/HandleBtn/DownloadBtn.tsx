@@ -1,8 +1,11 @@
 import React, { useContext } from 'react'
 import { ImageContext } from '../../misc/useContext';
-import "../../scss/handlebtn.scss"
+import { CloudDownload } from '@material-ui/icons';
+
+
 interface DownProps{
     chosenIdx : number[]
+    isDashboard?:boolean
 }
 function DownloadBtn({chosenIdx}:DownProps) {
   const { state, setState }= useContext(ImageContext);
@@ -30,7 +33,7 @@ function DownloadBtn({chosenIdx}:DownProps) {
         };
   return (
     <>
-        <button className='down-btn' type='button' onClick={downloadImage}>다운로드</button>
+        <button className='down-btn' type='button' onClick={downloadImage}>  <CloudDownload/> </button>
     </>
   )
 }

@@ -1,3 +1,4 @@
+import { Delete } from '@material-ui/icons';
 import React, { useContext } from 'react'
 import { CardContext, ImageContext } from '../../misc/useContext';
 
@@ -18,7 +19,7 @@ function RemoveBtn({chosenIdx }:RemoveProps) {
   
   return (
     <>
-    <button type='button' onClick={()=>onDelete(chosenIdx)}>삭제</button>
+    <button type='button' onClick={()=>onDelete(chosenIdx)}><Delete /></button>
     </>
   )
 }
