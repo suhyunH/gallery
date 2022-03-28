@@ -27,7 +27,6 @@ function ImageCard() {
             <li key={idx} className='card-item' >
                 <div className='card-pic' >
                     <img src={state[idx]._id}/>
-                    <span className='card-view'>일인칭 뷰어</span>
                 </div>
                 <div className='card-hover-container'>
                     <Link to={{pathname:`/image/${idx}`, search:`${idx}`}}>

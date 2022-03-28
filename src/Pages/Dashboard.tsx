@@ -45,7 +45,7 @@ function Dashboard() {
             {cards? 
                   <>
                   <div className='select-nav-left'>
-                    <span className='image-total'>{cards.length}개의 렌더 이미지 선택됨</span>
+                    <span className='image-total'>{cards.length}개의 이미지 선택됨</span>
                     <div className='image-select-all'>
                       <input id="selectAll" type="checkbox" onChange={selectAll} checked={cards.length===state.length}/>
                       <label htmlFor='selectAll'>모두 선택</label>
@@ -53,7 +53,7 @@ function Dashboard() {
                   </div>
                   </>
                   :
-                  <span className='image-total'>{state.length}개의 렌더샷</span>
+                  <span className='image-total'>{state.length}개의 이미지</span>
             }
                     
                     <h3>갤러리</h3>
