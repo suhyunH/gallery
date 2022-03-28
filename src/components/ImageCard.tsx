@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import "../scss/imagecard.scss";
 import { Link } from 'react-router-dom';
-import { Data } from '../misc/model';
 import { ImageContext } from '../misc/useContext';
 interface CardProps{
     setClickedCard: (v: number[]) => void
@@ -23,12 +22,15 @@ function ImageCard({ setClickedCard, clickedCard }:CardProps) {
     useEffect(()=>{
         setClickedCard([...checked]);
     },[checked])
+    console.log(checked);
+
     useEffect(()=>{
         if(clickedCard.length ===0 && checked.length > 0){
             setChecked([])
         }
     },[clickedCard])
 
+    console.log(clickedCard)
   return (
   <>
         {state.map((_, idx)=>

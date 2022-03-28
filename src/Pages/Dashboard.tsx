@@ -7,7 +7,6 @@ import HandleBtn from '../components/HandleBtn';
 
 function Dashboard() {
   const { state, setState }= useContext(ImageContext);
-  console.log(state);
 
   const arr = Array(state.length).fill(undefined).map((_,idx)=>idx);
   const [clickedCard, setClickedCard] = useState<number[]>([])

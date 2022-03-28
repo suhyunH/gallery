@@ -3,11 +3,12 @@ import { ImageContext } from '../../misc/useContext';
 import "../../scss/handlebtn.scss"
 interface DownProps{
     chosenIdx : number[]
+  
 }
 function DownloadBtn({chosenIdx}:DownProps) {
   const { state, setState }= useContext(ImageContext);
-
-    const setUrl = (url:string)=>{
+    
+  const setUrl = async (url:string)=>{
       return fetch(url)
       .then((response) => {
         return response.blob();
