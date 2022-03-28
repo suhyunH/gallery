@@ -1,36 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect} from 'react'
 import "../scss/imagecard.scss";
 import { Link } from 'react-router-dom';
-import { ImageContext } from '../misc/useContext';
-interface CardProps{
-    setClickedCard: (v: number[]) => void
-    clickedCard:number[]
-}
+import { CardContext, ImageContext } from '../misc/useContext';
 
-function ImageCard({ setClickedCard, clickedCard }:CardProps) {
+
+function ImageCard() {
     const { state, setState }= useContext(ImageContext);
-    const [checked, setChecked] =useState<number[]>([])
+    const {cards, setCards} = useContext(CardContext);
     
     const onChecked = (e:React.ChangeEvent<HTMLInputElement>)=>{
         let checkedNum= parseInt(e.target.id)
-        if(!checked.includes(checkedNum)){
-            setChecked(i=> [...i, checkedNum]);
-        }else if(checked.includes(checkedNum)){
-            setChecked(checked.filter((i)=>i!==checkedNum));
-        }
+            if(!cards?.includes(checkedNum)){
+                setCards(i =>[...(i? i : []), checkedNum]);
+            }else if(cards.includes(checkedNum)){
+                setCards(cards.filter((i)=>i!==checkedNum));
+            }
     }
     useEffect(()=>{
-        setClickedCard([...checked]);
-    },[checked])
-    console.log(checked);
-
-    useEffect(()=>{
-        if(clickedCard.length ===0 && checked.length > 0){
-            setChecked([])
+        if(cards?.length===0){
+            setCards(null);
         }
-    },[clickedCard])
-
-    console.log(clickedCard)
+    },[cards])
   return (
   <>
         {state.map((_, idx)=>
@@ -43,7 +33,7 @@ function ImageCard({ setClickedCard, clickedCard }:CardProps) {
                     <Link to={{pathname:`/image/${idx}`, search:`${idx}`}}>
                         <div className="card-hover"></div>
                     </Link>
-                    <input className='checkbox' type="checkbox" onChange={onChecked} id={`${idx}`} checked={clickedCard.includes(parseInt(`${idx}`))}/>
+                    <input className='checkbox' type="checkbox" onChange={onChecked} id={`${idx}`} checked={cards?.includes(parseInt(`${idx}`))}/>
                     <button className='card-option' type='button'>...</button>
                 </div>
             </li>

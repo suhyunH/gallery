@@ -1,30 +1,28 @@
 import React, { useContext, useState } from 'react'
 import ImageCard from '../components/ImageCard'
 import "../scss/dashboard.scss"
-import {ImageContext} from "../misc/useContext"
+import {CardContext, ImageContext} from "../misc/useContext"
 import HandleBtn from '../components/HandleBtn';
 
 
 function Dashboard() {
   const { state, setState }= useContext(ImageContext);
+  const {cards, setCards} = useContext(CardContext)
 
   const arr = Array(state.length).fill(undefined).map((_,idx)=>idx);
-  const [clickedCard, setClickedCard] = useState<number[]>([])
   const selectAll =(e:React.ChangeEvent<HTMLInputElement>)=>{
     if(e.target.checked){
-      setClickedCard(arr);
+      setCards(arr);
     }else{
-      setClickedCard([]);
+      setCards(null);
     }
   }
   const selectCancle=()=>{
-    if(clickedCard.length ===0){
+    if(cards?.length ===0){
       return 
     }
-    setClickedCard([]);
+    setCards(null);
   }
-
-
  
   return (
     <div>
@@ -36,12 +34,12 @@ function Dashboard() {
         
         <div className='content-container'>
           <div className='gallary-header'>
-            {clickedCard.length>0?
+            {cards? 
                   <>
                   <div className='select-nav-left'>
-                    <span className='image-total'>{clickedCard.length}개의 렌더 이미지 선택됨</span>
+                    <span className='image-total'>{cards.length}개의 렌더 이미지 선택됨</span>
                     <div className='image-select-all'>
-                      <input id="selectAll" type="checkbox" onChange={selectAll} checked={clickedCard.length===state.length}/>
+                      <input id="selectAll" type="checkbox" onChange={selectAll} checked={cards.length===state.length}/>
                       <label htmlFor='selectAll'>모두 선택</label>
                     </div>
                   </div>
@@ -49,20 +47,22 @@ function Dashboard() {
            :
                     <span className='image-total'>{state.length}개의 렌더샷</span>
             }
+                    
                     <h3>갤러리</h3>
-              {clickedCard.length >0?
+              {cards?
                 (<>
               <div className='handlebtn-container'>
-                    <HandleBtn clickedCard={clickedCard} isDashboard/>
+                    <HandleBtn isDashboard/>
                     <button type='button' onClick={selectCancle}>선택 취소</button>
                 </div>
                 
                 </>
                 )
-                : null}
+                : null
+              }
             </div>
             <ul className='imagecard-container'>
-              <ImageCard clickedCard={clickedCard} setClickedCard={(v: number[]) => { setClickedCard(v)}}/>
+              <ImageCard />
             </ul>
 
         </div>

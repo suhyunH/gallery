@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import DownloadBtn from './DownloadBtn';
 import "../../scss/handlebtn.scss"
 import RemoveBtn from './RemoveBtn';
+import { CardContext } from '../../misc/useContext';
 
 interface HandleProps {
     clickedSlide?: number,
-    clickedCard?: number[]
     isDashboard?:boolean
-    // setClickedCard?: (v: number[]) => void
 }
 
-function HandleBtn({clickedSlide, clickedCard, isDashboard}:HandleProps) {
+function HandleBtn({clickedSlide,  isDashboard}:HandleProps) {
   const [chosenIdx, setChosenIdx]= useState<number[]>([])
+  const {cards, setCards} =useContext(CardContext)
   useEffect(()=>{
     if(clickedSlide){
       setChosenIdx([clickedSlide])
-    }else if(clickedCard){
-      setChosenIdx([...clickedCard]);
+    }else if(cards){
+      setChosenIdx([...cards]);
     }
   },[setChosenIdx])
 
@@ -25,8 +25,6 @@ function HandleBtn({clickedSlide, clickedCard, isDashboard}:HandleProps) {
       <DownloadBtn chosenIdx={chosenIdx} /> 
       <RemoveBtn chosenIdx={chosenIdx} />
       </>
-      
-
   )
 }
 
