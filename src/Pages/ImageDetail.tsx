@@ -9,13 +9,12 @@ function ImageDetail() {
   const location = useLocation();
   const initialValue = location.search.substring(1) as string ;
   const [clickedSlide, setClickedSlide] = useState<number>(parseInt(initialValue));
-  const data = useContext(ImageContext).renderings;
+  const { state, setState }= useContext(ImageContext);
 
-  console.log(clickedSlide);
   const handleNext=()=>{
       setClickedSlide(clickedSlide +1);
-    if(clickedSlide === data.length-1){
-      setClickedSlide(data.length-1);
+    if(clickedSlide === state.length-1){
+      setClickedSlide(state.length-1);
     }
   }
   const handlePrev=()=>{
@@ -46,7 +45,7 @@ function ImageDetail() {
           <button className='prev-btn' onClick={handlePrev}>&larr;</button>
           </Link> 
           <div className='image-content'>
-          <img src={data[clickedSlide]._id} alt="디테일 사진" />
+          <img src={state[clickedSlide]._id} alt="디테일 사진" />
           </div>
           <Link to={{pathname:`/image/${clickedSlide}`}}>
           <button className='next-btn' onClick={handleNext}>&rarr;</button>

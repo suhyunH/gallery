@@ -5,7 +5,7 @@ interface DownProps{
     chosenIdx : number[]
 }
 function DownloadBtn({chosenIdx}:DownProps) {
-    const data = useContext(ImageContext).renderings;
+  const { state, setState }= useContext(ImageContext);
 
     const setUrl = (url:string)=>{
       return fetch(url)
@@ -21,13 +21,13 @@ function DownloadBtn({chosenIdx}:DownProps) {
         chosenIdx.map(async i=> {
             const a = document.createElement("a");
             a.style.display = "none";
-            a.href = await setUrl(data[i]._id);
+            a.href = await setUrl(state[i]._id);
             a.download = `${i}`
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
         })
-        console.log(chosenIdx);
+
         };
   return (
     <>

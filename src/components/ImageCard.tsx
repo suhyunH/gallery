@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "../scss/imagecard.scss";
 import { Link } from 'react-router-dom';
 import { Data } from '../misc/model';
+import { ImageContext } from '../misc/useContext';
 interface CardProps{
-    data: Data[],
     setClickedCard: (v: number[]) => void
     clickedCard:number[]
 }
 
-function ImageCard({data, setClickedCard, clickedCard }:CardProps) {
-    const imageArr = Object.values(data);
+function ImageCard({ setClickedCard, clickedCard }:CardProps) {
+    const { state, setState }= useContext(ImageContext);
     const [checked, setChecked] =useState<number[]>([])
     
     const onChecked = (e:React.ChangeEvent<HTMLInputElement>)=>{
@@ -29,13 +29,12 @@ function ImageCard({data, setClickedCard, clickedCard }:CardProps) {
         }
     },[clickedCard])
 
-  console.log(checked);
   return (
   <>
-        {imageArr.map((i, idx)=>
+        {state.map((_, idx)=>
             <li key={idx} className='card-item' >
                 <div className='card-pic' >
-                    <img src={i._id}/>
+                    <img src={state[idx]._id}/>
                     <span className='card-view'>일인칭 뷰어</span>
                 </div>
                 <div className='card-hover-container'>

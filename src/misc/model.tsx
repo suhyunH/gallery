@@ -1,3 +1,3 @@
 export interface Data{
-    _id : string;
+    _id:string;
 }

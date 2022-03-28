@@ -6,14 +6,16 @@ import "./scss/reset.scss"
 import {ImageContextProvider} from "./misc/useContext"
 function App() {
   return (
+   
     <div className='App'>
-    <BrowserRouter>
+    
+    <ImageContextProvider>
       <Routes>
         <Route path="/" element={<Dashboard />}/>
         <Route path="/image/:id" element={<ImageDetail />}/>
-       
       </Routes>
-    </BrowserRouter>
+    </ImageContextProvider>
+  
     </div>
   );
 }

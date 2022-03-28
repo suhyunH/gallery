@@ -6,10 +6,11 @@ import HandleBtn from '../components/HandleBtn';
 
 
 function Dashboard() {
-  const data = useContext(ImageContext).renderings;
-  const arr = Array(data.length).fill(undefined).map((_,idx)=>idx);
-  const [clickedCard, setClickedCard] = useState<number[]>([])
+  const { state, setState }= useContext(ImageContext);
+  console.log(state);
 
+  const arr = Array(state.length).fill(undefined).map((_,idx)=>idx);
+  const [clickedCard, setClickedCard] = useState<number[]>([])
   const selectAll =(e:React.ChangeEvent<HTMLInputElement>)=>{
     if(e.target.checked){
       setClickedCard(arr);
@@ -41,13 +42,13 @@ function Dashboard() {
                   <div className='select-nav-left'>
                     <span className='image-total'>{clickedCard.length}개의 렌더 이미지 선택됨</span>
                     <div className='image-select-all'>
-                      <input id="selectAll" type="checkbox" onChange={selectAll} checked={clickedCard.length===data.length}/>
+                      <input id="selectAll" type="checkbox" onChange={selectAll} checked={clickedCard.length===state.length}/>
                       <label htmlFor='selectAll'>모두 선택</label>
                     </div>
                   </div>
                   </>
            :
-                    <span className='image-total'>{data.length}개의 렌더샷</span>
+                    <span className='image-total'>{state.length}개의 렌더샷</span>
             }
                     <h3>갤러리</h3>
               {clickedCard.length >0?
@@ -62,7 +63,7 @@ function Dashboard() {
                 : null}
             </div>
             <ul className='imagecard-container'>
-              <ImageCard data={data} clickedCard={clickedCard} setClickedCard={(v: number[]) => { setClickedCard(v)}}/>
+              <ImageCard clickedCard={clickedCard} setClickedCard={(v: number[]) => { setClickedCard(v)}}/>
             </ul>
 
         </div>

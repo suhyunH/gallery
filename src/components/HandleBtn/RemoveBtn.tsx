@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ImageContext } from '../../misc/useContext';
 
-function RemoveBtn() {
+interface RemoveProps{
+  chosenIdx : number[]
+}
+function RemoveBtn({chosenIdx}:RemoveProps) {
+  const { state, setState }= useContext(ImageContext);
+  const onDelete =(id: number[])=>{
+  
+  }
   return (
-    <div>RemoveBtn</div>
+    <>
+    <button type='button' onClick={()=>onDelete(chosenIdx)}>삭제</button>
+    </>
   )
 }
 

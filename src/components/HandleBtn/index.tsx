@@ -1,8 +1,7 @@
 import React from 'react'
 import DownloadBtn from './DownloadBtn';
 import "../../scss/handlebtn.scss"
-
-
+import RemoveBtn from './RemoveBtn';
 
 interface HandleProps {
     clickedSlide?: number,
@@ -22,7 +21,7 @@ function HandleBtn({clickedSlide, clickedCard, isDashboard}:HandleProps) {
   return (
       <>
       <DownloadBtn chosenIdx={chosenIdx}/> 
-      <button type='button'>삭제</button>
+      <RemoveBtn chosenIdx={chosenIdx}/>
       </>
       
 
