@@ -4,6 +4,7 @@ import "../scss/dashboard.scss"
 import {CardContext, ImageContext} from "../misc/useContext"
 import HandleBtn from '../components/HandleBtn';
 import { Refresh } from '@material-ui/icons';
+import Modal from '../components/Modal';
 
 
 function Dashboard() {
@@ -26,7 +27,9 @@ function Dashboard() {
     setCards(null);
   }
   useEffect(()=>{
-    setIsLoading(false);
+    setTimeout(()=>{
+      setIsLoading(false);
+    }, 1000)
   },[])
  
   return (
